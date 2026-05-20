@@ -74,7 +74,7 @@
         }
         .tl-slidenav-title {
             font-family: 'Lora', serif !important;
-            color: #9a9080 !important;
+            color: #fff !important;
         }
 
         /* ─── TIMENAV (navegador de tempo inferior) ──────────── */
@@ -83,9 +83,7 @@
             border-top: 2px solid #c9972a !important;
         }
 
-        /* ─── FIX DE ERAS: banda fixa no topo do timenav ──────
-           As eras ficam numa faixa de 28px no alto.
-           O eixo de ticks começa logo abaixo, sem sobreposição.  */
+        /* ─── FIX DE ERAS ──────  */
         .tl-timenav .tl-timenav-background {
             top: 0 !important;
             height: 28px !important;
@@ -134,6 +132,7 @@
         .tl-timemarker .tl-timemarker-content-container {
             background: #1e1e3a !important;
             border: 1px solid #3a3a6a !important;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
         }
         .tl-timemarker.tl-timemarker-active .tl-timemarker-content-container {
             background: #c9972a !important;
@@ -150,6 +149,7 @@
         .tl-timemarker .tl-timemarker-line-left,
         .tl-timemarker .tl-timemarker-line-right {
             background: #3a3a6a !important;
+            z-index: -1;
         }
         .tl-timemarker.tl-timemarker-active .tl-timemarker-line-left,
         .tl-timemarker.tl-timemarker-active .tl-timemarker-line-right {
