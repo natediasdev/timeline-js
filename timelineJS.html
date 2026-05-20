@@ -50,23 +50,28 @@
     <!-- O contêiner onde a mágica acontece -->
     <div id="timeline-embed"></div>
 
-    <!-- Script oficial do TimelineJS -->
+   <!-- 1. Primeiro chamamos o script do TimelineJS (Ele PRECISA vir antes do seu código) -->
     <script src="https://knightlab.com"></script>
-
+    
     <script type="text/javascript">
-        // Definição das configurações internas do componente
-        var options = {
-            language: "pt-br",               // Interface em português
-            initial_zoom: 3,                 // Espalha os blocos horizontalmente
-            timenav_height_percentage: 45,   // Garante boa altura para a barra inferior
-            is_embed: true                   // Otimiza o comportamento de tela inteira
-        };
-
-        // 🔴 ATENÇÃO: Substitua o link abaixo pela URL completa da sua Planilha do Google
-        var spreadsheet_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTbZ24kupL50AYzRtPpInT5zNCu9Y8vZlmtKN5oea6YyStj1kS5ovC3Iy4QUl16D7635HpOU4PAzgK-/pub?gid=0&single=true&output=csv";
-
-        // Inicializa a ferramenta
-        window.timeline = new TL.Timeline('timeline-embed', spreadsheet_url, options);
+        // 2. Envolvemos tudo em um evento que espera a página carregar por completo
+        window.addEventListener('DOMContentLoaded', function() {
+            
+            var options = {
+                language: "pt-br",
+                initial_zoom: 3,
+                timenav_height_percentage: 45,
+                is_embed: true
+            };
+    
+            // Certifique-se de usar o link correto terminando em output=csv
+            var spreadsheet_url = "https://google.com";
+    
+            // Agora o TL já vai existir com certeza absoluta
+            window.timeline = new TL.Timeline('timeline-embed', spreadsheet_url, options);
+            
+        });
     </script>
+
 </body>
 </html>
