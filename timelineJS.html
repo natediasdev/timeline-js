@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Linha do Tempo Customizada</title>
     
-    <!-- CSS oficial do TimelineJS -->
-    <link title="timeline-styles" rel="stylesheet" href="https://knightlab.com">
+    <!-- ✅ CSS oficial do TimelineJS (URL corrigida) -->
+    <link title="timeline-styles" rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
     
     <style>
         html, body {
@@ -18,7 +18,7 @@
 
         /* 🛠️ AJUSTE DA SOBREPOSIÇÃO DA ERA NO RODAPÉ */
         .tl-timeaxis .tl-timeaxis-tick .tl-timeaxis-tick-text {
-            transform: translateY(14px) !important; /* Move os números/Eras mais para baixo */
+            transform: translateY(14px) !important;
             font-weight: 500 !important;
         }
         .tl-timenav-background .tl-era {
@@ -31,11 +31,11 @@
 
     <div id="timeline-embed"></div>
 
-    <!-- O Script JS com a propriedade defer força o navegador a registrar a biblioteca global antes da execução de scripts locais -->
-    <script defer src="https://knightlab.com"></script>
+    <!-- ✅ Script JS oficial do TimelineJS (URL corrigida, sem defer para garantir carregamento síncrono) -->
+    <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
 
     <script type="text/javascript">
-        // Garante que o script espere a biblioteca externa e o DOM estarem 100% prontos
+        // Garante que o script espere o DOM estar 100% pronto
         window.addEventListener('load', function() {
             if (typeof TL !== 'undefined') {
                 var options = {
@@ -45,7 +45,6 @@
                     is_embed: true
                 };
 
-                // Certifique-se de preencher com a sua planilha em formato CSV pública
                 var spreadsheet_url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTbZ24kupL50AYzRtPpInT5zNCu9Y8vZlmtKN5oea6YyStj1kS5ovC3Iy4QUl16D7635HpOU4PAzgK-/pub?gid=0&single=true&output=csv";
 
                 window.timeline = new TL.Timeline('timeline-embed', spreadsheet_url, options);
