@@ -8,22 +8,162 @@
     <!-- ✅ CSS oficial do TimelineJS (URL corrigida) -->
     <link title="timeline-styles" rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
     
+    <!-- Fontes históricas: Cinzel (títulos) + Lora (corpo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
     <style>
+        /* ─── BASE ──────────────────────────────────────────── */
         html, body {
             width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+            background: #0f0f1a;
         }
         #timeline-embed {
             width: 100%; height: 100vh;
         }
 
-        /* 🛠️ AJUSTE DA SOBREPOSIÇÃO DA ERA NO RODAPÉ */
-        .tl-timeaxis .tl-timeaxis-tick .tl-timeaxis-tick-text {
-            transform: translateY(14px) !important;
-            font-weight: 500 !important;
+        /* ─── PAINEL DO SLIDE (parte superior) ──────────────── */
+        .tl-slide .tl-slide-content {
+            background: #12122a !important;
         }
-        .tl-timenav-background .tl-era {
-            margin-top: -5px !important;
-            height: calc(100% - 10px) !important;
+        .tl-slide .tl-slide-content .tl-text {
+            background: #12122a !important;
+        }
+        .tl-slide .tl-headline-date {
+            font-family: 'Cinzel', serif !important;
+            font-size: 13px !important;
+            letter-spacing: 3px !important;
+            color: #c9972a !important;
+            text-transform: uppercase !important;
+        }
+        h2.tl-headline {
+            font-family: 'Cinzel', serif !important;
+            font-size: 28px !important;
+            font-weight: 600 !important;
+            color: #f5e6c8 !important;
+            line-height: 1.25 !important;
+        }
+        h2.tl-headline.tl-headline-title {
+            font-size: 38px !important;
+            color: #ffffff !important;
+        }
+        .tl-slide .tl-text .tl-text-content p {
+            font-family: 'Lora', serif !important;
+            font-size: 16px !important;
+            line-height: 1.75 !important;
+            color: #c8bfae !important;
+        }
+        .tl-credit {
+            font-family: 'Lora', serif !important;
+            font-size: 12px !important;
+            color: #7a7060 !important;
+        }
+        .tl-caption {
+            font-family: 'Lora', serif !important;
+            font-size: 13px !important;
+            color: #9a9080 !important;
+        }
+
+        /* ─── NAVEGAÇÃO ENTRE SLIDES ─────────────────────────── */
+        .tl-slidenav-next,
+        .tl-slidenav-previous {
+            color: #c9972a !important;
+        }
+        .tl-slidenav-next:hover,
+        .tl-slidenav-previous:hover {
+            color: #f5c84a !important;
+        }
+        .tl-slidenav-title {
+            font-family: 'Lora', serif !important;
+            color: #9a9080 !important;
+        }
+
+        /* ─── TIMENAV (navegador de tempo inferior) ──────────── */
+        .tl-timenav {
+            background: #0b0b1c !important;
+            border-top: 2px solid #c9972a !important;
+        }
+
+        /* ─── FIX DE ERAS: banda fixa no topo do timenav ──────
+           As eras ficam numa faixa de 28px no alto.
+           O eixo de ticks começa logo abaixo, sem sobreposição.  */
+        .tl-timenav .tl-timenav-background {
+            top: 0 !important;
+            height: 28px !important;
+            overflow: hidden !important;
+        }
+        .tl-timenav .tl-era {
+            top: 0 !important;
+            height: 28px !important;
+            line-height: 28px !important;
+            opacity: 0.92 !important;
+            border-left: 1px solid rgba(255,255,255,0.15) !important;
+        }
+        .tl-timenav .tl-era-text {
+            font-family: 'Cinzel', serif !important;
+            font-size: 10px !important;
+            font-weight: 600 !important;
+            letter-spacing: 2px !important;
+            text-transform: uppercase !important;
+        }
+
+        /* ─── EIXO DE TEMPO (ticks) ──────────────────────────── */
+        .tl-timenav .tl-timeaxis {
+            top: 28px !important;
+        }
+        .tl-timeaxis-major .tl-timeaxis-tick {
+            background-color: #c9972a !important;
+        }
+        .tl-timeaxis-major .tl-timeaxis-tick-text {
+            font-family: 'Cinzel', serif !important;
+            font-size: 11px !important;
+            color: #c9972a !important;
+        }
+        .tl-timeaxis-minor .tl-timeaxis-tick {
+            background-color: #3a3a5a !important;
+        }
+        .tl-timeaxis-minor .tl-timeaxis-tick-text {
+            font-family: 'Lora', serif !important;
+            font-size: 10px !important;
+            color: #5a5a7a !important;
+        }
+
+        /* ─── MARCADORES (flags dos eventos) ─────────────────── */
+        .tl-timemarker .tl-timemarker-content-container {
+            background: #1e1e3a !important;
+            border: 1px solid #3a3a6a !important;
+        }
+        .tl-timemarker.tl-timemarker-active .tl-timemarker-content-container {
+            background: #c9972a !important;
+            border-color: #f5c84a !important;
+        }
+        .tl-timemarker .tl-headline {
+            font-family: 'Cinzel', serif !important;
+            font-size: 11px !important;
+            color: #c8bfae !important;
+        }
+        .tl-timemarker.tl-timemarker-active .tl-headline {
+            color: #0f0f1a !important;
+        }
+        .tl-timemarker .tl-timemarker-line-left,
+        .tl-timemarker .tl-timemarker-line-right {
+            background: #3a3a6a !important;
+        }
+        .tl-timemarker.tl-timemarker-active .tl-timemarker-line-left,
+        .tl-timemarker.tl-timemarker-active .tl-timemarker-line-right {
+            background: #c9972a !important;
+        }
+
+        /* ─── BOTÕES DE ZOOM ──────────────────────────────────── */
+        .tl-timenav-zoom-in,
+        .tl-timenav-zoom-out {
+            background: #1e1e3a !important;
+            color: #c9972a !important;
+            border: 1px solid #3a3a5a !important;
+        }
+        .tl-timenav-zoom-in:hover,
+        .tl-timenav-zoom-out:hover {
+            background: #c9972a !important;
+            color: #0f0f1a !important;
         }
     </style>
 </head>
