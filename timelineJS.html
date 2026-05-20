@@ -81,6 +81,7 @@
         .tl-timenav {
             background: #0b0b1c !important;
             border-top: 2px solid #c9972a !important;
+            height: 30%;
         }
 
         /* ─── FIX DE ERAS ──────  */
@@ -134,6 +135,15 @@
             border: 1px solid #3a3a6a !important;
             box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
         }
+        .tl-timemarker .tl-timemarker-timespan {
+            background-color: transparent;
+        }
+        .tl-timemarker.tl-timemarker-active .tl-timemarker-timespan,
+        .tl-timemarker:focus .tl-timemarker-timespan,
+        .tl-timemarker:hover .tl-timemarker-timespan{
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
         .tl-timemarker.tl-timemarker-active .tl-timemarker-content-container {
             background: #c9972a !important;
             border-color: #f5c84a !important;
@@ -148,12 +158,11 @@
         }
         .tl-timemarker .tl-timemarker-line-left,
         .tl-timemarker .tl-timemarker-line-right {
-            background: #3a3a6a !important;
-            z-index: -1;
+            background: transparent !important;
         }
         .tl-timemarker.tl-timemarker-active .tl-timemarker-line-left,
         .tl-timemarker.tl-timemarker-active .tl-timemarker-line-right {
-            background: #c9972a !important;
+            background: transparent !important;
         }
 
         /* ─── BOTÕES DE ZOOM ──────────────────────────────────── */
