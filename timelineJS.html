@@ -5,73 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Linha do Tempo Customizada</title>
     
-    <!-- Arquivo de estilos padrão da Knight Lab -->
+    <!-- CSS oficial do TimelineJS -->
     <link title="timeline-styles" rel="stylesheet" href="https://knightlab.com">
     
     <style>
-        /* Garante que o aplicativo ocupe a tela toda sem rolagens indesejadas */
         html, body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
+            width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
         }
-
         #timeline-embed {
-            width: 100%;
-            height: 100vh; /* Ocupa exatamente a altura da janela */
+            width: 100%; height: 100vh;
         }
 
-        /* ==========================================================================
-           ⚠️ CUSTOMIZAÇÃO FORÇADA CONTRA A SOBREPOSIÇÃO
-           ========================================================================== */
-
-        /* 1. Aplica um transform para empurrar o texto dos anos (BCE/Era) para baixo */
+        /* 🛠️ AJUSTE DA SOBREPOSIÇÃO DA ERA NO RODAPÉ */
         .tl-timeaxis .tl-timeaxis-tick .tl-timeaxis-tick-text {
-            transform: translateY(12px) !important;
+            transform: translateY(14px) !important; /* Move os números/Eras mais para baixo */
             font-weight: 500 !important;
         }
-
-        /* 2. Caso a barra de fundo da Era esteja cobrindo a régua, empurra ela para cima */
         .tl-timenav-background .tl-era {
             margin-top: -5px !important;
             height: calc(100% - 10px) !important;
-        }
-
-        /* 3. Dá mais respiro para as caixas de eventos não colidirem com os números */
-        .tl-timenav-slider-container {
-            padding-bottom: 15px !important;
         }
     </style>
 </head>
 <body>
 
-    <!-- O contêiner onde a mágica acontece -->
     <div id="timeline-embed"></div>
 
-   <!-- 1. Primeiro chamamos o script do TimelineJS (Ele PRECISA vir antes do seu código) -->
-    <script src="https://knightlab.com"></script>
-    
+    <!-- O Script JS com a propriedade defer força o navegador a registrar a biblioteca global antes da execução de scripts locais -->
+    <script defer src="https://knightlab.com"></script>
+
     <script type="text/javascript">
-        // 2. Envolvemos tudo em um evento que espera a página carregar por completo
-        window.addEventListener('DOMContentLoaded', function() {
-            
-            var options = {
-                language: "pt-br",
-                initial_zoom: 3,
-                timenav_height_percentage: 45,
-                is_embed: true
-            };
-    
-            // Certifique-se de usar o link correto terminando em output=csv
-            var spreadsheet_url = "https://google.com";
-    
-            // Agora o TL já vai existir com certeza absoluta
-            window.timeline = new TL.Timeline('timeline-embed', spreadsheet_url, options);
-            
+        // Garante que o script espere a biblioteca externa e o DOM estarem 100% prontos
+        window.addEventListener('load', function() {
+            if (typeof TL !== 'undefined') {
+                var options = {
+                    language: "pt-br",
+                    initial_zoom: 3,
+                    timenav_height_percentage: 45,
+                    is_embed: true
+                };
+
+                // Certifique-se de preencher com a sua planilha em formato CSV pública
+                var spreadsheet_url = "https://google.com";
+
+                window.timeline = new TL.Timeline('timeline-embed', spreadsheet_url, options);
+            } else {
+                console.error("A biblioteca TimelineJS não pôde ser carregada a tempo.");
+            }
         });
     </script>
-
 </body>
 </html>
